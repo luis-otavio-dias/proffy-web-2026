@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router'
 import backgroundFinally from '../assets/background-finaly.svg'
 import done from '../assets/done.svg'
 import { Button } from './button'
@@ -11,31 +10,33 @@ type FinallyProps = {
 }
 
 export function Finally({title, subtitle, titleButton, path = ""}: FinallyProps) {
-    const navigate = useNavigate()
-    function handleFinally() {
-        navigate(path)
-    }
     return (
-        <div className="flex flex-col min-h-screen items-center justify-center relative h-full bg-purple">
-            <img src={backgroundFinally} className="absolute w-[69rem] h-[32rem]" />
-            <div className='flex flex-col items-center justify-center absolute'>
-                <img src={done} />
-                <h1 className='font-archivo-bold text-white text-6xl mt-10'>
+        <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-purple px-6 py-10">
+            <img
+                src={backgroundFinally}
+                alt=""
+                aria-hidden="true"
+                className="absolute h-auto w-[70rem] max-w-none sm:w-[90rem] lg:w-[70rem]"
+            />
+
+            <div className="relative z-10 flex w-full max-w-2xl flex-col items-center justify-center text-center">
+                <img src={done} alt="Concluído" className="h-24 w-24 sm:h-[7.5rem] sm:w-[7.5rem]" />
+                <h1 className="mt-8 font-archivo-bold text-3xl leading-tight text-white sm:mt-10 sm:text-5xl lg:text-6xl">
                     {title}
                 </h1>
-                <p className='font-poppins-regular text-base text-text-purple-base mt-6 text-center'>
+                <p className="mt-5 max-w-lg font-poppins-regular text-sm leading-6 text-text-purple-base sm:mt-6 sm:text-base sm:leading-7">
                     {subtitle}
                 </p>
 
-                <div>
+                <div className="w-full max-w-[185px]">
                     <Button
                         title={titleButton}
                         type='button'
                         disabled={false}
-                        onClick={handleFinally}
+                        link={path}
                     />
                 </div>
             </div>
-        </div>
+        </main>
     )
 }
